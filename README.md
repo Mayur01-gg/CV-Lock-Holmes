@@ -1,6 +1,7 @@
-# 🎯 AI Resume Analyzer
+# 🕵️ CV Lock Holmes
 
-A professional, full-stack AI-powered resume analysis application built with Python, Streamlit, and Google's Gemini 1.5 Flash API.
+**CV Lock Holmes** is an AI-powered resume analysis and ATS scoring system  
+that intelligently evaluates CVs using Generative AI.
 
 ## ✨ Features
 
