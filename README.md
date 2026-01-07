@@ -204,14 +204,14 @@ CMD ["streamlit", "run", "app.py"]
 
 ## 📊 Future Enhancements
 
-- [ ] Multi-format support (DOCX, TXT)
-- [ ] Bulk resume analysis
-- [ ] Resume template suggestions
-- [ ] LinkedIn profile import
-- [ ] Email notifications
-- [ ] Advanced analytics dashboard
-- [ ] Resume version comparison
-- [ ] ATS score prediction
+- Multi-format support (DOCX, TXT)
+- Bulk resume analysis
+- Resume template suggestions
+- LinkedIn profile import
+- Email notifications
+- Advanced analytics dashboard
+- Resume version comparison
+- ATS score prediction
 
 ## 🤝 Contributing
 
