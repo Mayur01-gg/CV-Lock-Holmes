@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 from database import init_db, create_user, verify_user, save_analysis, get_user_history
 from utils import extract_text_from_pdf, analyze_resume_with_gemini, create_gauge_chart, export_analysis
-import google.generativeai as genai
+from google import genai
 
 # Page configuration
 st.set_page_config(

@@ -1,7 +1,7 @@
 import json
 import re
 from datetime import datetime
-import google.generativeai as genai
+from google import genai
 import plotly.graph_objects as go
 
 # PDF extraction libraries
@@ -35,7 +35,7 @@ def extract_text_from_pdf(pdf_file):
 def analyze_resume_with_gemini(resume_text, job_description):
     """Analyze resume using Gemini AI and return structured results."""
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         
         prompt = f"""You are an expert Technical Recruiter and ATS (Applicant Tracking System) specialist. 
 Analyze the following resume against the job description and provide a detailed assessment.
@@ -183,7 +183,7 @@ def validate_api_key(api_key):
     """Validate if the Gemini API key is working."""
     try:
         genai.configure(api_key=api_key)
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content("Test")
         return True
     except Exception as e:
