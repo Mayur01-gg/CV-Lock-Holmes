@@ -39,6 +39,21 @@ def extract_text_from_pdf(pdf_file):
         return None
 
 
+# -------------------- JSON EXTRACTION (CRITICAL FIX) --------------------
+
+def extract_json_from_text(text):
+    """
+    Safely extracts the first valid JSON object from Gemini response
+    """
+    try:
+        match = re.search(r"\{[\s\S]*\}", text)
+        if not match:
+            raise ValueError("No JSON object found in response")
+        return json.loads(match.group())
+    except json.JSONDecodeError as e:
+        raise ValueError("Invalid JSON returned by Gemini") from e
+
+
 # -------------------- GEMINI RESUME ANALYSIS --------------------
 
 def analyze_resume_with_gemini(resume_text, job_description):
@@ -53,36 +68,39 @@ def analyze_resume_with_gemini(resume_text, job_description):
         prompt = f"""
 You are an expert Technical Recruiter and ATS specialist.
 
-Analyze the RESUME against the JOB DESCRIPTION.
+STRICT RULES:
+- Respond ONLY with valid JSON
+- No markdown
+- No explanations
+- No text outside JSON
 
-RESUME:
-{resume_text}
-
-JOB DESCRIPTION:
-{job_description}
-
-Return ONLY valid JSON:
+JSON FORMAT:
 {{
   "match_score": 0-100,
   "missing_skills": [],
   "profile_summary": "",
   "improvements": []
 }}
+
+RESUME:
+{resume_text}
+
+JOB DESCRIPTION:
+{job_description}
 """
 
         response = client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents=prompt
         )
 
-        text = response.text.strip()
-        match = re.search(r"\{{.*\}}", text, re.DOTALL)
+        raw_text = response.text.strip()
 
-        if not match:
-            raise ValueError("No JSON found in Gemini response")
+        # DEBUG LOG (remove later if needed)
+        print("GEMINI RAW RESPONSE:\n", raw_text)
 
-        analysis = json.loads(match.group())
-        analysis["match_score"] = int(analysis["match_score"])
+        analysis = extract_json_from_text(raw_text)
+        analysis["match_score"] = int(analysis.get("match_score", 0))
 
         return analysis
 
@@ -149,7 +167,7 @@ def validate_api_key(api_key):
     try:
         client = genai.Client(api_key=api_key)
         client.models.generate_content(
-            model="gemini-2.0-flash",
+            model="gemini-2.5-flash",
             contents="Hello"
         )
         return True
