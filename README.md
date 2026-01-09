@@ -45,7 +45,7 @@ Open your browser and navigate to `http://localhost:8501`
 ## 📁 Project Structure
 
 ```
-resume-analyzer/
+CV-Lock-Holmes/
 │
 ├── app.py                
 ├── database.py           
