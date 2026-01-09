@@ -161,13 +161,6 @@ Feel free to submit issues, fork the repository, and create pull requests for an
 
 This project is **Open-Source** and available for educational and commercial use.
 
-## 🙏 Acknowledgments
-
-- Google Gemini API for AI capabilities
-- Streamlit for the web framework
-- pdfminer.six for PDF parsing
-- Plotly for interactive visualizations
-
 ## 📧 Support
 
 For issues or questions, please open an issue in the repository or contact me through my socials.
