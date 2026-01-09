@@ -167,17 +167,6 @@ You can configure your Gemini API key in two ways:
 - Verify API quota/limits
 - Ensure proper API key format
 
-## 📝 Customization
-
-### Modify AI Prompt
-Edit the prompt in `utils.py` → `analyze_resume_with_gemini()` function
-
-### Change Scoring Thresholds
-Modify score ranges in `app.py` → `results_page()` function
-
-### Database Schema Changes
-Update tables in `database.py` → `init_db()` function
-
 ## 🚀 Deployment Options
 
 ### Local Development
