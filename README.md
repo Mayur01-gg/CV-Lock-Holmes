@@ -7,7 +7,7 @@
 - **🔐 Authentication System**: Secure login/register with hashed passwords using SQLite
 - **📊 Dashboard**: View analysis history, statistics, and previous scores
 - **📤 Resume Upload**: Support for PDF resume files with automatic text extraction
-- **🤖 AI Analysis**: Powered by Google Gemini 1.5 Flash for intelligent resume evaluation
+- **🤖 AI Analysis**: Powered by Google Gemini 2.5 Flash for intelligent resume evaluation
 - **📈 Visual Results**: Interactive gauge charts and organized analysis tabs
 - **💾 Export Function**: Download analysis reports in text format
 - **🎨 Modern UI**: Clean, professional interface with responsive design
@@ -47,13 +47,13 @@ Open your browser and navigate to `http://localhost:8501`
 ```
 resume-analyzer/
 │
-├── app.py                 # Main Streamlit application
-├── database.py            # Database operations and user management
-├── utils.py               # Utility functions (PDF parsing, AI analysis)
-├── requirements.txt       # Python dependencies
-├── .env.example          # Environment variables template
-├── README.md             # This file
-└── resume_analyzer.db    # SQLite database (created automatically)
+├── app.py                
+├── database.py           
+├── utils.py              
+├── requirements.txt       
+├── .env.example          
+├── README.md             
+└── resume_analyzer.db    
 ```
 
 ## 🔧 Configuration
@@ -191,17 +191,6 @@ streamlit run app.py
 3. Add secrets (API key) in dashboard
 4. Deploy
 
-### Docker (Optional)
-```dockerfile
-FROM python:3.9-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-EXPOSE 8501
-CMD ["streamlit", "run", "app.py"]
-```
-
 ## 📊 Future Enhancements
 
 - Multi-format support (DOCX, TXT)
@@ -219,7 +208,7 @@ Feel free to submit issues, fork the repository, and create pull requests for an
 
 ## 📄 License
 
-This project is open-source and available for educational and commercial use.
+This project is **Open-Source** and available for educational and commercial use.
 
 ## 🙏 Acknowledgments
 
@@ -230,7 +219,7 @@ This project is open-source and available for educational and commercial use.
 
 ## 📧 Support
 
-For issues or questions, please open an issue in the repository or contact the maintainer.
+For issues or questions, please open an issue in the repository or contact me through my socials.
 
 ---
 
