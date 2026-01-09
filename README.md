@@ -99,44 +99,6 @@ You can configure your Gemini API key in two ways:
 - **SQL Injection Protection**: Parameterized queries throughout
 - **API Key Security**: API keys stored securely, never in database
 
-## 🎨 Features Breakdown
-
-### Authentication System
-- User registration with validation
-- Secure password hashing
-- Session-based authentication
-- Persistent login state
-
-### Resume Analysis
-- PDF text extraction (supports pdfminer.six and PyPDF2)
-- AI-powered analysis using Gemini 1.5 Flash
-- Structured JSON response parsing
-- Error handling and validation
-
-### Results Visualization
-- Color-coded match scores
-- Interactive Plotly gauge charts
-- Tabbed interface for organized information
-- Downloadable analysis reports
-
-### Database Schema
-
-**Users Table**:
-- id (Primary Key)
-- username (Unique)
-- email
-- password_hash
-- created_at
-
-**Analysis History Table**:
-- id (Primary Key)
-- user_id (Foreign Key)
-- filename
-- match_score
-- job_title
-- analysis_data
-- created_at
-
 ## 🔍 How It Works
 
 1. **PDF Processing**: Extracts text from uploaded PDF using pdfminer.six or PyPDF2
