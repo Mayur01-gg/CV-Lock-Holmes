@@ -161,3 +161,24 @@ def get_user_stats(user_id):
     except Exception as e:
         print(f"Error retrieving stats: {e}")
         return None
+
+def delete_analysis(user_id, analysis_id):
+    """Delete a single analysis entry for a user."""
+    try:
+        conn = get_connection()
+        cursor = conn.cursor()
+
+        cursor.execute(
+            '''
+            DELETE FROM analysis_history
+            WHERE id = ? AND user_id = ?
+            ''',
+            (analysis_id, user_id)
+        )
+
+        conn.commit()
+        conn.close()
+        return True
+    except Exception as e:
+        print(f"Error deleting analysis: {e}")
+        return False

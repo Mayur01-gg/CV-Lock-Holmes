@@ -1,11 +1,11 @@
 import streamlit as st
 from datetime import datetime
-from database import init_db, create_user, verify_user, save_analysis, get_user_history
+from database import init_db, create_user, verify_user, save_analysis, get_user_history, delete_analysis
 from utils import extract_text_from_pdf, analyze_resume_with_gemini, create_gauge_chart, export_analysis
 
 # -------------------- PAGE CONFIG --------------------
 st.set_page_config(
-    page_title="AI Resume Analyzer",
+    page_title="CV Lock Holmes - AI Resume Analyzer",
     page_icon="📄",
     layout="wide"
 )
@@ -49,7 +49,7 @@ with st.sidebar:
 
 # -------------------- AUTH --------------------
 def login_page():
-    st.markdown("## 🤖 AI Resume Analyzer")
+    st.markdown("## 🕵️‍♂️ CV Lock Holmes - AI Resume Analyzer")
     st.caption("Smart resume screening powered by AI")
 
     col1, col2, col3 = st.columns([1,2,1])
@@ -126,17 +126,43 @@ def dashboard_page():
 
     with st.container(border=True):
         st.subheader("📜 Analysis History")
-        history = get_user_history(st.session_state.user_id)
 
-        if history:
-            st.dataframe({
-                "Date": [h[1] for h in history],
-                "Resume": [h[2] for h in history],
-                "Score (%)": [h[3] for h in history],
-                "Job Role": [h[4] for h in history]
-            }, use_container_width=True)
-        else:
-            st.info("No analyses yet")
+    history = get_user_history(st.session_state.user_id)
+
+    if history:
+        # Convert to DataFrame-like structure
+        df = {
+            "ID": [h["id"] for h in history],
+            "Date": [h["created_at"] for h in history],
+            "Resume": [h["filename"] for h in history],
+            "Score (%)": [h["match_score"] for h in history],
+            "Job Role": [h["job_title"] or "—" for h in history]
+        }
+
+        st.dataframe(
+            {k: v for k, v in df.items() if k != "ID"},
+            use_container_width=True
+        )
+
+        st.divider()
+
+        selected_id = st.selectbox(
+            "Select an analysis to delete",
+            options=df["ID"],
+            format_func=lambda x: f"{df['Resume'][df['ID'].index(x)]}"
+        )
+
+        if st.button("Delete Selected Analysis", type="secondary"):
+            delete_analysis(
+                st.session_state.user_id,
+                selected_id
+            )
+            st.success("Analysis deleted")
+            st.rerun()
+
+    else:
+        st.info("No analyses yet")
+
 
 # -------------------- UPLOAD --------------------
 def upload_page():
