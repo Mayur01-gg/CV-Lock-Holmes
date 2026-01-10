@@ -1,4 +1,4 @@
-# 🕵️ CV Lock Holmes
+# CV Lock Holmes
 
 **CV Lock Holmes** is an AI-powered resume analysis and ATS scoring system that intelligently evaluates CVs using Generative AI.
 
