@@ -94,7 +94,7 @@ def login_page():
 
 # -------------------- DASHBOARD --------------------
 def dashboard_page():
-    st.markdown(f"## 👋 Welcome, {st.session_state.username}")
+    st.markdown(f"##  Welcome, {st.session_state.username}")
     st.caption("Track your resume analyses and start new evaluations")
 
     col1, col2, col3 = st.columns(3)
