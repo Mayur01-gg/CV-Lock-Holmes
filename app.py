@@ -92,6 +92,11 @@ def login_page():
                         else:
                             st.error("Username already exists")
 
+def back_to_dashboard():
+    if st.button("⬅️ Back to Dashboard", use_container_width=False):
+        st.session_state.page = "dashboard"
+        st.rerun()
+
 # -------------------- DASHBOARD --------------------
 def dashboard_page():
     st.markdown(f"##  Welcome, {st.session_state.username}")
@@ -135,6 +140,8 @@ def dashboard_page():
 
 # -------------------- UPLOAD --------------------
 def upload_page():
+    back_to_dashboard() 
+    
     st.markdown("## 📤 Upload Resume")
     st.caption("Provide resume and job description for analysis")
 
@@ -175,6 +182,7 @@ def upload_page():
 
 # -------------------- RESULTS --------------------
 def results_page():
+    back_to_dashboard() 
     result = st.session_state.analysis_result
     score = result["match_score"]
 
